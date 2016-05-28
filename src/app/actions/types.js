@@ -1,0 +1,1 @@
+export const FETCH_WINES = 'fetch_wines';
