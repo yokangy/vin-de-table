@@ -7,8 +7,9 @@ const port = process.env.PORT || 8080;
 
 const app = express();
 
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 app.use(bodyParser.json({ type: '*/*' }));
+app.use(express.static(path.resolve(__dirname, '../../src')));
 
 // home route
 app.get('/', function(req, res) {
