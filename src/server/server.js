@@ -9,11 +9,12 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(bodyParser.json({ type: '*/*' }));
-app.use(express.static(path.resolve(__dirname, '../../src')));
+app.use(express.static(path.resolve(__dirname, '../public')));
+app.use(express.static(path.resolve(__dirname, '../bin')));
 
 // home route
 app.get('/', function(req, res) {
-  res.sendFile(path.resolve(__dirname, '../index.html'));
+  res.sendFile(path.resolve(__dirname, '../public/index.html'));
 });
 
 app.listen(port);
