@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const path = require('path');
 const mongoose = require('mongoose');
 
+const Wines  = require('./controllers/wines_controller');
+
 // DB setup
 mongoose.connect('mongodb://localhost/vin')
 
@@ -18,6 +20,8 @@ app.use(express.static(path.resolve(__dirname, '../bin')));
 app.get('/', function(req, res) {
   res.sendFile(path.resolve(__dirname, '../public/index.html'));
 });
+
+app.get('/wines', Wines.getWines);
 
 // Server setup
 const port = process.env.PORT || 8080;
