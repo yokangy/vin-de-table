@@ -8,7 +8,7 @@ const winesSchema = new Schema({
   name: String,
   varietal: String,
   rating: Number,
-  review: [Schema.Types.Objectid]
+  review: [ { type: Schema.Types.ObjectId, ref:'reviews' } ]
 });
 
 // Create the model class
