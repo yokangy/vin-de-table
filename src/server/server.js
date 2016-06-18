@@ -22,6 +22,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/wines', Wines.getWines);
+app.post('/wines', Wines.addWine);
 
 // Server setup
 const port = process.env.PORT || 8080;
