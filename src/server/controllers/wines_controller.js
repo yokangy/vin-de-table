@@ -1,7 +1,7 @@
-const Wines = require('../models/wines');
+const Wine = require('../models/wine');
 
 exports.getWines = function(req, res, next) {
-  Wines.find(function(err, wines) {
+  Wine.find(function(err, wines) {
     if(err) { return next(err); }
 
     // If wines found, return list of wines
@@ -19,14 +19,14 @@ exports.addWine = function(req, res, next) {
   const name = req.body.name;
   const varietal = req.body.varietal;
 
-  Wines.findOne({ vintage: vintage, winery: winery, name: name, varietal: varietal }, function(err, existingWine) {
+  Wine.findOne({ vintage: vintage, winery: winery, name: name, varietal: varietal }, function(err, existingWine) {
     if (err) { return next(err) }
 
     if (existingWine) {
       return res.status(422).send({ error: 'Wine already exists' });
     }
 
-    const wine = new Wines({
+    const wine = new Wine({
       vintage: vintage,
       winery: winery,
       name: name,
