@@ -12,3 +12,25 @@ exports.getWines = function(req, res, next) {
     }
   })
 }
+
+exports.addWine = function(req, res, next) {
+  const vintage = req.body.vintage;
+  const winery = req.body.winery;
+  const name = req.body.name;
+  const varietal = req.body.varietal;
+
+  Wines.findOne({ vintage: vintage, winery: winery, wineName: wineName, varietal: varietal }, function(err, existingWine) {
+    if (err) { return next(err) }
+
+    if (existingWine) {
+      return res.status(422).send({ error: 'Wine already exists' });
+    }
+
+    const wine = new Wine({
+      vintage: vintage,
+      winery: winery,
+      name: wineName,
+      varietal: varietal
+    });
+  })
+}
