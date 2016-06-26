@@ -13,6 +13,21 @@ exports.getWines = function(req, res, next) {
   })
 }
 
+exports.getWineByID = function(req, res, next) {
+  const wineID = req.params.id;
+  
+  Wine.find({ _id: wineID}, function(err, wines) {
+    if(err) { return next(err); }
+
+    // If wines found, return list of wines
+    if(wines && wines.length > 0) {
+      return res.send(wines);
+    } else {
+      return res.send({ error: 'No wines found.'});
+    }
+  })
+}
+
 exports.addWine = function(req, res, next) {
   const vintage = req.body.vintage;
   const winery = req.body.winery;
