@@ -5,8 +5,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 // Include Routers
-const wineRouter = require('./routes/wines_routes');
-
+const winesRouter = require('./routes/wines_routes');
+const reviewsRouter = require('./routes/reviews_routes');
 // DB setup
 mongoose.connect('mongodb://localhost/vin')
 
@@ -23,7 +23,8 @@ app.get('/', function(req, res) {
 });
 
 // Initialize routes for /wine
-wineRouter(app);
+winesRouter(app);
+reviewsRouter(app);
 
 
 // Server setup
