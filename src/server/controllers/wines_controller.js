@@ -15,7 +15,7 @@ exports.getWines = function(req, res, next) {
 
 exports.getWineByID = function(req, res, next) {
   const wineID = req.params.id;
-  
+
   Wine.find({ _id: wineID}, function(err, wines) {
     if(err) { return next(err); }
 
@@ -51,7 +51,7 @@ exports.addWine = function(req, res, next) {
     wine.save(function(err, wine) {
       if (err) { return next(err) }
 
-      res.status(201).json(wine);
+      return res.status(201).json(wine);
     });
   });
 }
