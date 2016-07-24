@@ -1,13 +1,18 @@
+import axios from 'axios';
 import {
   FETCH_WINES
 } from './types';
 
+const ROOT_URL = 'http://localhost:8080';
+
 export function fetchWines() {
-  return {
-    type: FETCH_WINES,
-    payload: [
-    { 'vintage': 2012, 'winery': 'Duckhorn', 'name': '', 'varietal': 'Sauvignon Blanc', 'rating': 5 },
-    { 'vintage': 2012, 'winery': 'Pine Ridge', 'name': '', 'varietal': 'Cabernet Sauvignon', 'rating': 5 }
-    ]
-  }
+  return(function(dispatch) {
+    axios.get(`${ROOT_URL}/wines`)
+      .then(response => {
+        dispatch({
+          type: FETCH_WINES,
+          payload: response.data
+        })
+      })
+  });
 }
